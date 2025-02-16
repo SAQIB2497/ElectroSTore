@@ -26,50 +26,88 @@ const Navbar = ({ setShowLogin }) => {
               className="menu menu-sm dropdown-content mt-3 w-44 bg-gray-800 text-[#A6ADBB] rounded-lg shadow-lg z-[1] p-2"
             >
               <li>
-                <Link to="home" smooth={true} duration={800} offset={-80} className="hover:text-gray-300 cursor-pointer">
+                <Link
+                  to="home"
+                  smooth={true}
+                  duration={800}
+                  offset={-80}
+                  className="hover:text-gray-300 cursor-pointer"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="products" smooth={true} duration={800} offset={-80} className="hover:text-gray-300 cursor-pointer">
+                <Link
+                  to="products"
+                  smooth={true}
+                  duration={800}
+                  offset={-80}
+                  className="hover:text-gray-300 cursor-pointer"
+                >
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="" className="hover:text-gray-300 cursor-pointer">Cart</Link>
+                <Link to="" className="hover:text-gray-300 cursor-pointer">
+                  Cart
+                </Link>
               </li>
             </ul>
           </div>
 
-          <a className="text-2xl font-bold cursor-pointer tracking-wide text-[#A6ADBB] ml-3">ElectroStore</a>
+          <a className="text-2xl font-bold cursor-pointer tracking-wide text-[#A6ADBB] ml-3">
+            ElectroStore
+          </a>
         </div>
 
         {/* Navbar Center */}
         <div className="hidden md:flex space-x-6">
-          <Link to="home" smooth={true} duration={800} offset={-80} className="hover:text-gray-300 cursor-pointer transition">
+          <Link
+            to="home"
+            smooth={true}
+            duration={800}
+            offset={-80}
+            className="hover:text-gray-300 cursor-pointer transition"
+          >
             Home
           </Link>
-          <Link to="products" smooth={true} duration={800} offset={-80} className="hover:text-gray-300 cursor-pointer transition">
+          <Link
+            to="products"
+            smooth={true}
+            duration={800}
+            offset={-80}
+            className="hover:text-gray-300 cursor-pointer transition"
+          >
             Products
           </Link>
-          <Link to="" className="hover:text-gray-300 cursor-pointer transition">Cart</Link>
+          <Link to="" className="hover:text-gray-300 cursor-pointer transition">
+            Cart
+          </Link>
         </div>
 
         {/* Navbar End */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           {user ? (
-            <button onClick={handleLogout} className="btn bg-red-500 hover:bg-red-600 text-white">
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 rounded-lg shadow-md transition-all"
+            >
               Logout
             </button>
           ) : (
-            <button onClick={() => setShowLogin(true)} className="btn bg-blue-500 hover:bg-blue-600 text-white">
+            <button
+              onClick={() => setShowLogin(true)}
+              className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 rounded-lg shadow-md transition-all"
+            >
               Login
             </button>
           )}
 
-          <div className="relative cursor-pointer">
-            <FaCartShopping className="text-xl" />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">3</span>
+          <div className="relative cursor-pointer p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+            <FaCartShopping className="text-xl text-gray-700" />
+            <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5 shadow">
+              3
+            </span>
           </div>
         </div>
       </div>

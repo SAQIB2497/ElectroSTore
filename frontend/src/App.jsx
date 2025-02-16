@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import { useAuth } from "./context/AuthContext";
-import Login from './components/Login.jsx'
+import Login from "./components/Login.jsx";
+import Cart from "./components/Cart.jsx";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -30,7 +32,7 @@ const App = () => {
           }
         } else {
           setIsBlurred(false);
-          setToastShown(false); // Reset so toast can be shown again if user scrolls back
+          setToastShown(false);
         }
       }
     };
@@ -41,18 +43,33 @@ const App = () => {
 
   return (
     <Router>
-      <div>
-        <Navbar setShowLogin={setShowLogin} />
-        <section id="home">
-          <Home />
-        </section>
-        <section id="products" className={`${isBlurred ? "blur-md" : ""}`}>
-          <Products />
-        </section>
-        <Footer />
-      </div>
+      <Navbar setShowLogin={setShowLogin} />
 
-      {/* Show login modal if user tries to access products */}
+      <Routes>
+        {/* Home & Products (React Scrolling) */}
+        <Route
+          path="/"
+          element={
+            <>
+              <section id="home">
+                <Home />
+              </section>
+              <section id="products" className={`${isBlurred ? "blur-md" : ""}`}>
+                <Products />
+              </section>
+              <Footer />
+            </>
+          }
+        />
+        
+        {/* Explicit Route for Cart */}
+        <Route path="/cart" element={<Cart />} />
+
+        {/* Not Found Route (Only shows on wrong URLs) */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
+      {/* Blur warning */}
       {isBlurred && !user && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex justify-center items-center z-50">
           <div className="text-white text-2xl font-bold text-center">
@@ -61,6 +78,7 @@ const App = () => {
         </div>
       )}
 
+      {/* Login Modal */}
       {showLogin && <Login setShowLogin={setShowLogin} />}
     </Router>
   );
