@@ -2,10 +2,10 @@ import { ReactTyped } from "react-typed";
 
 const Herosection = () => {
   return (
-    <div className="mx-auto px-4 flex max-w-screen-lg">
+    <div className="mx-auto px-4 flex flex-col-reverse sm:flex md:flex-row max-w-screen-lg">
       <div className="mt-52 flex flex-wrap justify-between items-center gap-40">
         {/* Left Section */}
-        <div className="flex-1 space-y-6">
+        <div className="md:flex-1 space-y-6">
           <h1 className="font-extrabold text-4xl md:text-5xl leading-tight">
             Welcome to
             <br />
